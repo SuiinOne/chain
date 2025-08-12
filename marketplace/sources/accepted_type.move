@@ -20,7 +20,7 @@ public struct AcceptedTypeRegistry has key {
 }
 
 // 초기화
-public fun init_registry(ctx: &mut TxContext) {
+public entry fun init_registry(ctx: &mut TxContext) {
     let registry = AcceptedTypeRegistry {
         id: object::new(ctx),
         types: table::new(ctx),
@@ -29,14 +29,14 @@ public fun init_registry(ctx: &mut TxContext) {
 }
 
 // 등록
-public fun register_type(
+public entry fun register_type(
     type_name: String,
     module_address: address,
     metadata_url: String,
     registry: &mut AcceptedTypeRegistry,
     ctx: &mut TxContext,
 ) {
-    assert!(ctx.sender()== get_admin_address(), 0); // 관리자만 실행 가능
+    assert!(ctx.sender() == get_admin_address(), 0); // 관리자만 실행 가능
     let accepted_type = AcceptedType {
         id: object::new(ctx),
         type_name,
@@ -62,7 +62,7 @@ public fun get_type_info(
 }
 
 // 활성화 <-> 비활성화
-public fun set_type_active(
+public entry fun set_type_active(
     type_name: String,
     active: bool,
     registry: &mut AcceptedTypeRegistry,

@@ -12,19 +12,16 @@ public struct TestNFT has key, store {
     image_url: String,
 }
 
-public fun mint(
-    name: String,
-    description: String,
-    image_url: String,
-    ctx: &mut TxContext,
-): TestNFT {
+public entry fun mint(name: String, description: String, image_url: String, ctx: &mut TxContext) {
     let nft = TestNFT {
         id: object::new(ctx),
         name,
         description,
         image_url,
     };
-    nft
+    // nft
+
+    transfer::transfer(nft, ctx.sender())
 }
 
 public fun get_name(nft: &TestNFT): String {

@@ -36,7 +36,7 @@ public struct ListingCreated has copy, drop {
 
 // method ----------------------------------------------------------
 // 초기화
-public fun init_registry<T: key + store>(ctx: &mut TxContext) {
+public entry fun init_registry<T: key + store>(ctx: &mut TxContext) {
     let registry = ListingRegistry<T> {
         id: object::new(ctx),
         listings: table::new(ctx),

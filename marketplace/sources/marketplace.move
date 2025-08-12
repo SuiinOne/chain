@@ -1,6 +1,6 @@
 module marketplace::marketplace;
 
-use marketplace::accepted_type::{Self, AcceptedTypeRegistry};
+use marketplace::accepted_type::{Self, AcceptedTypeRegistry, AcceptedType};
 use marketplace::constants::get_admin_address;
 use marketplace::listing::{Self, ListingRegistry, Listing};
 use std::string::String;
